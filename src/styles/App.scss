@@ -1,0 +1,184 @@
+@font-face {
+	font-family: "Rocko";
+	src: url(../assets/font/RockoFLF-Bold_1.woff);
+	font-weight: 600;
+}
+@font-face {
+	font-family: "Rocko";
+	src: url(../assets/font/RockoUltraFLF.woff);
+	font-weight: 700;
+}
+
+:root {
+	--main-bg: #82bfc4;
+	--primary: #022038;
+	--secondary: #fff5df;
+	--shadow: #58a8b6;
+	--strike: #ff6b6b;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+body {
+	font-family: "Rocko";
+	font-weight: 700;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--main-bg);
+}
+
+.game {
+	background-color: var(--secondary);
+	padding: 1rem;
+	text-align: center;
+	border-radius: 20px;
+	h1 {
+		font-size: 3rem;
+		margin-top: 0;
+	}
+}
+
+.stats {
+	font-size: 1.2rem;
+	p {
+		margin-top: 0;
+	}
+	.scores {
+		padding: 0 1rem;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.board {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	position: relative;
+	margin-top: 2rem;
+}
+
+.tile {
+	cursor: pointer;
+	padding: 50px;
+	background: #fff5df;
+	position: relative;
+	img {
+		position: absolute;
+		height: 50px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.border-right {
+	&::after {
+		content: "";
+		border-radius: 10px;
+		width: 15px;
+		height: 105%;
+		background-color: var(--primary);
+		position: absolute;
+		bottom: 0;
+		right: -8px;
+		z-index: 2;
+	}
+}
+
+.border-bottom {
+	&::before {
+		content: "";
+		border-radius: 10px;
+		width: 105%;
+		height: 15px;
+		background-color: var(--primary);
+		position: absolute;
+		bottom: -8px;
+		right: 0;
+		z-index: 2;
+	}
+}
+
+.strike {
+	position: absolute;
+	background-color: var(--strike);
+	z-index: 2;
+	border-radius: 10px;
+}
+
+.strike-row-1 {
+	width: 100%;
+	height: 5px;
+	top: 15%;
+}
+.strike-row-2 {
+	width: 100%;
+	height: 5px;
+	top: 49%;
+}
+.strike-row-3 {
+	width: 100%;
+	height: 5px;
+	top: 82%;
+}
+.strike-column-1 {
+	height: 100%;
+	width: 5px;
+	left: 16%;
+}
+.strike-column-2 {
+	height: 100%;
+	width: 5px;
+	left: 49%;
+}
+.strike-column-3 {
+	height: 100%;
+	width: 5px;
+	left: 82%;
+}
+.strike-diagonal-1 {
+	width: 90%;
+	height: 7px;
+	top: 49%;
+	left: 6%;
+	transform: skewY(45deg);
+}
+.strike-diagonal-2 {
+	width: 90%;
+	height: 7px;
+	top: 49%;
+	left: 4%;
+	transform: skewY(-45deg);
+}
+
+.game-over-container {
+	&.visible {
+		visibility: visible;
+	}
+	&.hidden {
+		visibility: hidden;
+	}
+	p {
+		font-size: 2rem;
+	}
+	.new-game {
+		display: flex;
+		justify-content: center;
+
+		img {
+			cursor: pointer;
+			height: 80px;
+		}
+	}
+}
